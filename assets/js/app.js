@@ -8,7 +8,11 @@ var keyApi = "";
 
 //need to create/append user search list
 
-
+$("user-history").function(searchHistory) {
+    var searchHistory = $("<li>").addClass("list-group-item").text(citySearch);
+    $(".list").append(searchHistory);
+    console.log(searchHistory);
+};
 
 //create functions for:
 //ajax API
@@ -26,7 +30,7 @@ $("#todayCast").function(response) {
 
     console.log(citySearch, date, Temperature);
 
-}
+};
 //ajax API
 //create elements, append to setcion for 5 day forecast
 
