@@ -4,7 +4,7 @@ var citySearch = $("#searchBar").val();
 // for loop (or .each jQuery) for today's date i++ <=5????? 
 
 //login key for api needed???
-var keyApi = "";
+var keyApi = "&appid=b6145ae695bfe33643e2f7c034c3dab0";
 
 //need to create/append user search list
 
@@ -42,7 +42,6 @@ $("#searchBtn").on("click", function (event) {
   var urlApi =
     "api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
-    "&appid" +
     keyApi;
   citySearch = $("#searchBar").val();
 
