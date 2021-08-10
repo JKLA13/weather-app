@@ -1,12 +1,32 @@
 //declare variables
 
 var citySearch = $("#searchBar").val();
+// for loop (or .each jQuery) for today's date i++ <=5????? 
+
+//login key for api needed???
 var keyApi = "";
+
+//need to create/append user search list
+
+
 
 //create functions for:
 //ajax API
 //create elements, append to section for today's forecast
-// function currentWeather () {}
+$("#todayCast").function(response) {
+    //manip DOM, create elements
+    citySearch = $("<h3>").addClass("todayCard").text(response.name);
+    var userDate = new Date;
+    userDate= $("<h3>").addClass("todayCard").text(date.toLocaleString("en-US"));
+    var conditionIcon = $("<img>").toLocaleString("src", "https://openweathermap.org/img/w/" + weather[0].icon + "png");
+    var todayTemp = $("<h2>").addClass("today-temp").text(Temperature);
+
+    //append elements
+    citySearch.append(citySearch, date, Temperature);
+
+    console.log(citySearch, date, Temperature);
+
+}
 //ajax API
 //create elements, append to setcion for 5 day forecast
 

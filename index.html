@@ -23,7 +23,7 @@
     <main>
         <section class="container-fluid">
           <div class="row">
-            <div class="col-lg-4 bg-success pt-3 pb-3" id="sidebar">
+            <div class="col-lg-4 bg-success pt-2 pb-2" id="sidebar">
               <h6>Search city for weather:</h6>
               <div
                 class="user-input mb-3"></div>
@@ -48,12 +48,13 @@
         <!-- building main section where search results appear -->
         <section>
           <div class="col-lg-8">
-          <div id="weatherResults" class="mt-4"></div>
+            <h5 class="hide mt-3">Today's Forecast</h5>
+          <div id="todayCast" class="mt-4"></div>
         </div>
 
-        <div class="col-md-12 mt-4">
-          <h6 class="mt-3 hide" id="h5cast">5 Day Forecast:</h6>
-          <div id="forecast" class="row">
+        <div class="col-md-8 mt-4">
+          <h6 class="hide mt-3" id="h5cast">5 Day Forecast:</h6>
+          <div id="extendedCast" class="row">
             </div>
         </div>
         </section>
