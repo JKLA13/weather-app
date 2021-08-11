@@ -5,12 +5,18 @@ var keyApi = "&appid=b6145ae695bfe33643e2f7c034c3dab0";
 
 //need to create/append user search list
 
-// $(".user-history").function(searchHistory)
+// $(".user-history").function(searchHistory);
 // function populateHistory(citySearch) {
 //   var searchHistory = $("<li>").addClass("list-group-item").text(citySearch);
 //   $(".list").append(searchHistory);
 //   var searchResult = response.list;
 // }
+function showHistory() {
+  var history = localStorage.getItem("weatherHistory").split(",");
+  for (var i = 0; i < history.length; i++) {
+    console.log(history[i]);
+  }
+}
 
 //create functions for today cast and 5 day cast
 
@@ -85,6 +91,17 @@ $("#searchBtn").on("click", function (event) {
     method: "GET",
   }).then(function (response) {
     todayCast(response);
+
+    if (localStorage.getItem("weatherHistory") === null) {
+      localStorage.setItem("weatherHistory", response.name);
+    } else {
+      var storedCities = localStorage.getItem("weatherHistory");
+      localStorage.setItem(
+        "weatherHistory",
+        storedCities + "," + response.name
+      );
+    }
+    showHistory();
   });
   urlApi =
     "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + keyApi;
