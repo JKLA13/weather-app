@@ -15,6 +15,9 @@ function showHistory() {
   var history = localStorage.getItem("weatherHistory").split(",");
   for (var i = 0; i < history.length; i++) {
     console.log(history[i]);
+    showHistory = $("<li>").addClass("list-group-item").text(citySearch);
+    $(".list").append(showHistory);
+    showHistory = response.name.list;
   }
 }
 
@@ -36,6 +39,12 @@ function todayCast(response) {
   var todayTemp = $("<h2>")
     .addClass("today-temp")
     .html(Math.round(tempFar) + " &#176; F");
+  var todayHumidity = $("<p>")
+    .addClass("today-humidity")
+    .text("Humidity: " + response.main.humidity + "%");
+  var todayWind = $("<p>")
+    .addClass("today-wind")
+    .text("Wind Speed: " + response.wind.speed + "MPH");
   var createCard = $("<div>").addClass("card");
   var createCardBody = $("<div>").addClass("card-body");
 
@@ -43,7 +52,14 @@ function todayCast(response) {
 
   $("#todayCast").append(createCard);
 
-  createCardBody.append(citySearch, userDate, conditionIcon, todayTemp);
+  createCardBody.append(
+    citySearch,
+    userDate,
+    conditionIcon,
+    todayTemp,
+    todayHumidity,
+    todayWind
+  );
   createCard.append(createCardBody);
 }
 
@@ -65,14 +81,26 @@ function fiveCast(results) {
     var todayTemp = $("<h5>")
       .addClass("today-temp")
       .html(Math.round(tempFar) + " &#176; F");
-    var createCard = $("<div>").addClass("card");
+    var fiveHumidity = $("<p>")
+      .addClass("five-humidity")
+      .text("Humidity: " + results[i].main.humidity + "%");
+    var fiveWind = $("<p>")
+      .addClass("five-wind")
+      .text("Wind Speed:" + results[i].wind.speed + "MPH");
+    var createCard = $("<div>").addClass("cardExt");
     var createCardBody = $("<div>").addClass("card-body");
 
     //append elements
 
     $("#extendedCast").append(createCard);
 
-    createCardBody.append(userDate, conditionIcon, todayTemp);
+    createCardBody.append(
+      userDate,
+      conditionIcon,
+      todayTemp,
+      fiveHumidity,
+      fiveWind
+    );
     createCard.append(createCardBody);
   }
 }

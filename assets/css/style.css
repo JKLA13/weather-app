@@ -13,3 +13,7 @@
 .card {
     border: black solid 1px;
 }
+
+.cardExt {
+    background-color: blue;
+}
