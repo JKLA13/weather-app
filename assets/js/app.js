@@ -16,7 +16,6 @@ var keyApi = "&appid=b6145ae695bfe33643e2f7c034c3dab0";
 
 function todayCast(response) {
   //     // jQuery manip DOM, create elements
-  console.log(response);
   var citySearch = $("<h3>").addClass("todayCard").text(response.name);
   var userDate = new Date();
   userDate = $("<h3>")
@@ -27,31 +26,31 @@ function todayCast(response) {
     "src",
     "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
   );
-  var todayTemp = $("<h2>").addClass("today-temp").text(response.main.temp);
+  var tempFar = (response.main.temp - 273.15) * (9 / 5) + 32;
+  var todayTemp = $("<h2>")
+    .addClass("today-temp")
+    .html(Math.round(tempFar) + " &#176; F");
   var createCard = $("<div>").addClass("card");
   var createCardBody = $("<div>").addClass("card-body");
 
   //append elements
-  $("#todayCast").append(citySearch);
-  citySearch.append(citySearch, userDate, conditionIcon, todayTemp);
-  createCard.append(createCard, createCardBody);
 
-  console.log(citySearch, userDate, conditionIcon, todayTemp);
-  console.log(createCard, createCardBody);
+  $("#todayCast").append(createCard);
+
+  createCardBody.append(citySearch, userDate, conditionIcon, todayTemp);
+  createCard.append(createCardBody);
 }
 
 //create function for elements, append to setcion for 5 day forecast
 // for loop (or .each jQuery) for today's date i++ <=5?????
 
-// function fiveCast() {
-//
+function fiveCast() {
+  for (var i = 0; i < searchResult.length; i++) {
+    var date5Cast = Number(searchResult[i].text.split("-")[2].split("")[0]);
 
-//   for (var i = 0; i < searchResult.length; i++) {
-//     var date5Cast = Number(searchResult[i].text.split("-")[2].split("")[0]);
-
-// $("#h5cast").addClass("show");
-//   }
-// }
+    $("#h5cast").addClass("show");
+  }
+}
 
 //listen event on search btn
 
@@ -66,10 +65,23 @@ $("#searchBtn").on("click", function (event) {
     url: urlApi,
     method: "GET",
   }).then(function (response) {
-    // console.log(response);
-    // populateHistory(response);
     todayCast(response);
+  });
+  urlApi =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + keyApi;
 
-    // console.log(searchHistory);
+  $.ajax({
+    url: urlApi,
+    method: "GET",
+  }).then(function (response) {
+    // todayCast(response);
+    console.log(response);
+    var results = [];
+    $.each(response.list, function (index, value) {
+      if (value.dt_txt.indexOf("06:00:00") >= 0) {
+        results.push(value);
+      }
+    });
+    console.log(results);
   });
 });
