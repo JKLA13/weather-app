@@ -44,11 +44,28 @@ function todayCast(response) {
 //create function for elements, append to setcion for 5 day forecast
 // for loop (or .each jQuery) for today's date i++ <=5?????
 
-function fiveCast() {
-  for (var i = 0; i < searchResult.length; i++) {
-    var date5Cast = Number(searchResult[i].text.split("-")[2].split("")[0]);
+function fiveCast(results) {
+  for (var i = 0; i < results.length; i++) {
+    var userDate = new Date();
+    userDate = $("<h4>").text(results[i].dt_txt);
+    var conditionIcon = $("<img>");
+    conditionIcon.attr(
+      "src",
+      "https://openweathermap.org/img/w/" + results[i].weather[0].icon + ".png"
+    );
+    var tempFar = (results[i].main.temp - 273.15) * (9 / 5) + 32;
+    var todayTemp = $("<h5>")
+      .addClass("today-temp")
+      .html(Math.round(tempFar) + " &#176; F");
+    var createCard = $("<div>").addClass("card");
+    var createCardBody = $("<div>").addClass("card-body");
 
-    $("#h5cast").addClass("show");
+    //append elements
+
+    $("#extendedCast").append(createCard);
+
+    createCardBody.append(userDate, conditionIcon, todayTemp);
+    createCard.append(createCardBody);
   }
 }
 
@@ -74,14 +91,12 @@ $("#searchBtn").on("click", function (event) {
     url: urlApi,
     method: "GET",
   }).then(function (response) {
-    // todayCast(response);
-    console.log(response);
     var results = [];
     $.each(response.list, function (index, value) {
       if (value.dt_txt.indexOf("06:00:00") >= 0) {
         results.push(value);
       }
     });
-    console.log(results);
+    fiveCast(results);
   });
 });
