@@ -46,8 +46,10 @@ function todayCast(response) {
 
 function fiveCast(results) {
   for (var i = 0; i < results.length; i++) {
-    var userDate = new Date();
-    userDate = $("<h4>").text(results[i].dt_txt);
+    var timeSplit = results[i].dt_txt.split(" ");
+    var newDate = timeSplit[0].split("-");
+    var formattedDate = newDate[1] + "/" + newDate[2] + "/" + newDate[0];
+    userDate = $("<h4>").text(formattedDate);
     var conditionIcon = $("<img>");
     conditionIcon.attr(
       "src",
