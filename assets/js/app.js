@@ -11,7 +11,7 @@ var keyApi = "&appid=b6145ae695bfe33643e2f7c034c3dab0";
 function populateHistory() {
   var searchHistory = $("<li>").addClass("list-group-item").text(citySearch);
   $(".list").append(searchHistory);
-  console.log(searchHistory);
+  var searchResult = response.list;
 }
 
 //create functions for:
@@ -29,14 +29,24 @@ function todayCast() {
     "https://openweathermap.org/img/w/" + weather[0].icon + "png"
   );
   var todayTemp = $("<h2>").addClass("today-temp").text(Temperature);
+  var createCard = $("<div>").addClass("card");
+  var createCardBody = $("<div>").addClass("card-body");
 
   //append elements
-  citySearch.append(citySearch, date, Temperature);
+  citySearch.append(citySearch, userDate, conditionIcon, todayTemp);
+  createCard.append(createCard, createCardBody);
 
-  console.log(citySearch, date, Temperature);
+  console.log(citySearch, userDate, conditionIcon, todayTemp);
+  console.log(createCard, createCardBody);
 }
 //ajax API
 //create elements, append to setcion for 5 day forecast
+
+function fiveCast() {
+  for (var i = 0; i < searchResult.length; i++) {
+    var date5Cast = Number(searchResult[i].text.split("-")[2].split("")[0]);
+  }
+}
 
 //listen event on search btn
 
@@ -52,5 +62,8 @@ $("#searchBtn").on("click", function (event) {
     method: "GET",
   }).then(function (response) {
     console.log(response);
+    populateHistory();
+
+    console.log(searchHistory);
   });
 });
