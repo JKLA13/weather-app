@@ -10,7 +10,11 @@ function showHistory() {
   var history = localStorage.getItem("weatherHistory").split(",");
   for (var i = 0; i < history.length; i++) {
     console.log(history[i]);
-    var showHistory = $("<li>").addClass("list-group-item").text(history[i]);
+    var showHistory = $("<li>")
+      .addClass("list-group-item list-group-item-action")
+      // .setAttribute("data-search", history[i])
+      .text(history[i]);
+
     $(".list").append(showHistory);
     // showHistory = history[i];
   }
@@ -144,3 +148,11 @@ $("#searchBtn").on("click", function (event) {
     fiveCast(results);
   });
 });
+
+function searchListClick(e) {
+  var listItem = e.target;
+  var searchAgain = listItem.getAttribute("list-group-item-action");
+  todayCast(searchAgain);
+}
+
+$("weatherHistory").on("click", searchListClick);
