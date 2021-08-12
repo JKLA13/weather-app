@@ -5,19 +5,13 @@ var keyApi = "&appid=b6145ae695bfe33643e2f7c034c3dab0";
 
 //need to create/append user search list
 
-// $(".user-history").function(searchHistory);
-// function populateHistory(citySearch) {
-//   var searchHistory = $("<li>").addClass("list-group-item").text(citySearch);
-//   $(".list").append(searchHistory);
-//   var searchResult = response.list;
-// }
 function showHistory() {
   var history = localStorage.getItem("weatherHistory").split(",");
   for (var i = 0; i < history.length; i++) {
     console.log(history[i]);
-    showHistory = $("<li>").addClass("list-group-item").text(citySearch);
+    var showHistory = $("<li>").addClass("list-group-item").text(citySearch);
     $(".list").append(showHistory);
-    showHistory = response.name.list;
+    showHistory = response.list;
   }
 }
 
@@ -49,6 +43,7 @@ function todayCast(response) {
   var createCardBody = $("<div>").addClass("card-body");
 
   //append elements
+  $("#todayCast").empty();
 
   $("#todayCast").append(createCard);
 
@@ -64,9 +59,9 @@ function todayCast(response) {
 }
 
 //create function for elements, append to setcion for 5 day forecast
-// for loop (or .each jQuery) for today's date i++ <=5?????
 
 function fiveCast(results) {
+  // for loop (or .each jQuery) for today's date i++
   for (var i = 0; i < results.length; i++) {
     var timeSplit = results[i].dt_txt.split(" ");
     var newDate = timeSplit[0].split("-");
@@ -87,10 +82,11 @@ function fiveCast(results) {
     var fiveWind = $("<p>")
       .addClass("five-wind")
       .text("Wind Speed:" + results[i].wind.speed + "MPH");
-    var createCard = $("<div>").addClass("cardExt");
+    var createCard = $("<div>").addClass("card");
     var createCardBody = $("<div>").addClass("card-body");
 
     //append elements
+    // $("#todayCast").empty();
 
     $("#extendedCast").append(createCard);
 
