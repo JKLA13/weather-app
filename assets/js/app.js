@@ -11,7 +11,7 @@ function showHistory() {
     console.log(history[i]);
     var showHistory = $("<li>").addClass("list-group-item").text(history[i]);
     $(".list").append(showHistory);
-    showHistory = response.list;
+    showHistory = history[i];
   }
 }
 
