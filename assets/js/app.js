@@ -155,4 +155,10 @@ function searchListClick(e) {
   todayCast(searchAgain);
 }
 
-$("weatherHistory").on("click", searchListClick);
+$("weatherHistory").on("click", function (event) {
+  event.preventDefault();
+
+  searchListClick();
+  todayCast();
+  fiveCast();
+});
