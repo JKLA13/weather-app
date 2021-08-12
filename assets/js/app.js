@@ -61,6 +61,7 @@ function todayCast(response) {
 //create function for elements, append to setcion for 5 day forecast
 
 function fiveCast(results) {
+  $("#extendedCast").empty();
   // for loop (or .each jQuery) for today's date i++
   for (var i = 0; i < results.length; i++) {
     var timeSplit = results[i].dt_txt.split(" ");
@@ -86,7 +87,6 @@ function fiveCast(results) {
     var createCardBody = $("<div>").addClass("card-body");
 
     //append elements
-    // $("#todayCast").empty();
 
     $("#extendedCast").append(createCard);
 
