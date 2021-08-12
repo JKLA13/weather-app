@@ -9,7 +9,7 @@ function showHistory() {
   var history = localStorage.getItem("weatherHistory").split(",");
   for (var i = 0; i < history.length; i++) {
     console.log(history[i]);
-    var showHistory = $("<li>").addClass("list-group-item").text(citySearch);
+    var showHistory = $("<li>").addClass("list-group-item").text(history[i]);
     $(".list").append(showHistory);
     showHistory = response.list;
   }
