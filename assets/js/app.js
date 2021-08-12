@@ -6,12 +6,13 @@ var keyApi = "&appid=b6145ae695bfe33643e2f7c034c3dab0";
 //need to create/append user search list
 
 function showHistory() {
+  $(".list").empty();
   var history = localStorage.getItem("weatherHistory").split(",");
   for (var i = 0; i < history.length; i++) {
     console.log(history[i]);
     var showHistory = $("<li>").addClass("list-group-item").text(history[i]);
     $(".list").append(showHistory);
-    showHistory = history[i];
+    // showHistory = history[i];
   }
 }
 
