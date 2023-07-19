@@ -7,7 +7,7 @@
 }
 
 .show {
-    display:block;
+    display: flex;
 }
 
 .card {
@@ -16,4 +16,5 @@
 
 .card-group {
     background-color: blue;
+
 }
