@@ -31,7 +31,7 @@ THEN I am again presented with current and future conditions for that city
 
 ##Screenshots of Weather Dashboard
 
-![Screencap](./Assets/images/Screencap1.PNG "Screencap")
+![Screencap](./assets/images/Screencap1.PNG "Screencap")
 
 ## Links
 
