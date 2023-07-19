@@ -32,7 +32,6 @@ THEN I am again presented with current and future conditions for that city
 ##Screenshots of Weather Dashboard
 
 ![Screencap](./Assets/images/Screencap1.PNG "Screencap")
-![GIF](./Assets/images/Screencap1.PNG "GIF")
 
 ## Links
 
